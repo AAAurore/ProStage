@@ -21,7 +21,7 @@ class ProStageController extends AbstractController
     */
     public function entreprises(): Response
     {
-      return new Response('<html><body><h1>Cette page affichera la liste des entreprises proposant un stage</h1></body></html>');
+      return $this->render('pro_stage/entreprises.html.twig');
     }
 
     /**
@@ -29,7 +29,7 @@ class ProStageController extends AbstractController
     */
     public function formations(): Response
     {
-      return new Response('<html><body><h1>Cette page affichera la liste des formations de l\'IUT</h1></body></html>');
+      return $this->render('pro_stage/formations.html.twig');
     }
 
     /**
