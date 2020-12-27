@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block contenu %}
+{% block titrePage %}
 <h1>Bienvenue sur ProStage</h1>
+{% endblock %}
 
+{% block contenuPage %}
 <p>
   Vous trouverez ci-dessous les dernières entreprises ayant proposé un stage.
 </p>
@@ -36,5 +38,4 @@
     <a href="{{path('pro_stage_stages', {id:2})}}">Vidéo Projet</a>
   </li>
 </ul>
-
 {% endblock %}
