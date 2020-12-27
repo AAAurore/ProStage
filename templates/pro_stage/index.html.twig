@@ -5,37 +5,66 @@
 {% endblock %}
 
 {% block contenuPage %}
-<p>
-  Vous trouverez ci-dessous les dernières entreprises ayant proposé un stage.
-</p>
+<div class="list-group">
+  <a href="{{path('pro_stage_entreprises')}}" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">
+        Entreprises
+      </h5>
+    </div>
+    <p class="mb-1">
+      Vous trouverez les dernières entreprises ayant proposé un stage.
+    </p>
+  </a>
+  <a href="{{path('pro_stage_formations')}}" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">
+        Formations
+      </h5>
+    </div>
+    <p class="mb-1">
+      Vous trouverez la liste des formations à l'IUT.
+    </p>
+  </a>
+  </div>
 
-<ul>
-  <li>
-    <a href="{{path('pro_stage_entreprises')}}">Entreprises</a>
-  </li>
-</ul>
-
-<p>
-  Vous trouverez ci-dessous la liste des formations à l'IUT.
-</p>
-
-<ul>
-  <li>
-    <a href="{{path('pro_stage_formations')}}">Formations</a>
-  </li>
-</ul>
-
+<h3 style="margin-top:25px">
+  Stages
+</h3>
 <p>
   Vous trouverez ci-dessous les derniers stages proposés.
 </p>
 
-<ul>
-  <li>
-    <a href="{{path('pro_stage_stages', {id:1})}}">Refonte BD</a>
-  </li>
 
-  <li>
-    <a href="{{path('pro_stage_stages', {id:2})}}">Vidéo Projet</a>
-  </li>
-</ul>
+<div class="card-deck">
+  <div class="card">
+    <a href="{{path('pro_stage_stages', {id:1})}}">
+      <img src="{{asset('/images/kiabi.png')}}" class="card-img-top">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">Refonte BD</h5>
+      <p class="card-text">
+        Suite aux nombreuses demandes en ligne, notre système de gestion de base de données devient obsolète.
+        Nous aurions donc besoin d'un/e stagiaire pour optimiser notre base de données.
+      </p>
+      <p class="card-text">
+        <small class="text-muted">Déposé le 10/09/2020</small>
+      </p>
+    </div>
+  </div>
+  <div class="card">
+    <a href="{{path('pro_stage_stages', {id:2})}}">
+      <img src="{{asset('/images/safran.png')}}" class="card-img-top" >
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">Vidéo Projet</h5>
+      <p class="card-text">
+        Nous recherchons un/e étudiant/e pour notre projet de vidéo publicitaire.
+      </p>
+      <p class="card-text">
+        <small class="text-muted">Déposé le 19/09/2020</small>
+      </p>
+    </div>
+  </div>
+</div>
 {% endblock %}
