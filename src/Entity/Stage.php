@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,21 @@ class Stage
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateDepot;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="Stage")
+     */
+    private $entreprises;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="Stage")
+     */
+    private $formations;
+
+    public function __construct()
+    {
+        $this->formations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +103,45 @@ class Stage
     public function setDateDepot(?\DateTimeInterface $dateDepot): self
     {
         $this->dateDepot = $dateDepot;
+
+        return $this;
+    }
+
+    public function getEntreprises(): ?Entreprise
+    {
+        return $this->entreprises;
+    }
+
+    public function setEntreprises(?Entreprise $entreprises): self
+    {
+        $this->entreprises = $entreprises;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Formation[]
+     */
+    public function getFormations(): Collection
+    {
+        return $this->formations;
+    }
+
+    public function addFormation(Formation $formation): self
+    {
+        if (!$this->formations->contains($formation)) {
+            $this->formations[] = $formation;
+            $formation->addStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormation(Formation $formation): self
+    {
+        if ($this->formations->removeElement($formation)) {
+            $formation->removeStage($this);
+        }
 
         return $this;
     }
