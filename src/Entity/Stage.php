@@ -25,14 +25,14 @@ class Stage
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $activite;
-
-    /**
      * @ORM\Column(type="string", length=1000, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $activite;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -42,7 +42,7 @@ class Stage
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="Stage")
      */
-    private $entreprises;
+    private $entreprise;
 
     /**
      * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="Stage")
@@ -71,18 +71,6 @@ class Stage
         return $this;
     }
 
-    public function getActivite(): ?string
-    {
-        return $this->activite;
-    }
-
-    public function setActivite(?string $activite): self
-    {
-        $this->activite = $activite;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -91,6 +79,18 @@ class Stage
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getActivite(): ?string
+    {
+        return $this->activite;
+    }
+
+    public function setActivite(?string $activite): self
+    {
+        $this->activite = $activite;
 
         return $this;
     }
@@ -107,14 +107,14 @@ class Stage
         return $this;
     }
 
-    public function getEntreprises(): ?Entreprise
+    public function getEntreprise(): ?Entreprise
     {
-        return $this->entreprises;
+        return $this->entreprise;
     }
 
-    public function setEntreprises(?Entreprise $entreprises): self
+    public function setEntreprise(?Entreprise $entreprise): self
     {
-        $this->entreprises = $entreprises;
+        $this->entreprise = $entreprise;
 
         return $this;
     }

@@ -35,7 +35,7 @@ class Entreprise
     private $site;
 
     /**
-     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="entreprises")
+     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="entreprise")
      */
     private $Stage;
 
@@ -97,7 +97,7 @@ class Entreprise
     {
         if (!$this->Stage->contains($stage)) {
             $this->Stage[] = $stage;
-            $stage->setEntreprises($this);
+            $stage->setEntreprise($this);
         }
 
         return $this;
@@ -107,8 +107,8 @@ class Entreprise
     {
         if ($this->Stage->removeElement($stage)) {
             // set the owning side to null (unless already changed)
-            if ($stage->getEntreprises() === $this) {
-                $stage->setEntreprises(null);
+            if ($stage->getEntreprise() === $this) {
+                $stage->setEntreprise(null);
             }
         }
 
