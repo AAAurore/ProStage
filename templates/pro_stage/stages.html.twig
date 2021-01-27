@@ -1,11 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block titrePage %}
-<h1>Nom du stage n°{{id}}</h1>
+<h1>Nom du stage n°{{stage.id}}</h1>
 {% endblock %}
 
 {% block contenuPage %}
-<p>
-  Cette page affichera le descriptif du stage ayant pour identifiant {{id}}
-</p>
+<ul class="list-group">
+  <li class="list-group-item center">
+    <img src="{{asset('/images/image.jpg')}}" class="rounded mx-auto d-block" width="400px">
+  </li>
+  <li class="list-group-item"><strong>Titre :</strong> {{stage.titre}}</li>
+  <li class="list-group-item"><strong>Déposé le  :</strong> {{stage.dateDepot | date("d/m/Y")}}</li>
+  <li class="list-group-item"><strong>Nom de l'entreprise :</strong> {{stage.entreprise.nom}}</li>
+  <li class="list-group-item"><strong>Activité :</strong> {{stage.activite}}</li>
+  <li class="list-group-item"><strong>Adresse :</strong> {{stage.entreprise.adresse}}</li>
+  <li class="list-group-item"><strong>Formation :</strong>
+    {% for formationCourante in stage.formations %}
+    {{formationCourante.nom}}
+    {% if loop.last == false %}
+    .
+    {% endif %}
+  {% endfor %}
+  </li>
+  <li class="list-group-item"><strong>Lieu de formation :</strong>
+    {% for formationCourante in stage.formations %}
+    {{formationCourante.lieu}}
+    {% if loop.last == false %}
+    .
+    {% endif %}
+  {% endfor %}
+  </li>
+  <li class="list-group-item"><strong>Description :</strong> {{stage.description}}</li>
+  <li class="list-group-item"><strong>Site-web :</strong> <a href="{{stage.entreprise.site}}">{{stage.entreprise.site}}</a></li>
+</ul>
 {% endblock %}

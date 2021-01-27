@@ -5,7 +5,28 @@
 {% endblock %}
 
 {% block contenuPage %}
-<p>
-  Cette page affichera la liste des entreprises proposant un stage
-</p>
+{% set debutNouvelleLigne = true %}
+
+{% for entrepriseCourante in entreprises %}
+{% if debutNouvelleLigne == true %}
+  <div class="card-deck">
+    {% set debutNouvelleLigne = false %}
+  {% endif %}
+  <div class="card">
+    <a href="">
+      <img src="{{asset('/images/image.jpg')}}" class="card-img-top">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title"><strong>{{entrepriseCourante.nom}}</strong></h5>
+      <p class="card-text">{{entrepriseCourante.adresse}}</p>
+      <p class="card-text">
+        <small class="text-muted"><a href="{{entrepriseCourante.site}}">{{entrepriseCourante.site}}</a></small>
+      </p>
+    </div>
+  </div>
+  {% if loop.index % 3 == 0 %}
+  </div>
+  <br />
+  {% endif %}
+  {% endfor %}
 {% endblock %}

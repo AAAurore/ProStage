@@ -5,8 +5,26 @@
 {% endblock %}
 
 {% block contenuPage %}
-<p>
-  Cette page affichera la liste des formations de l'IUT
-</p>
+{% set debutNouvelleLigne = true %}
+
+{% for formationCourante in formations %}
+{% if debutNouvelleLigne == true %}
+  <div class="card-deck">
+    {% set debutNouvelleLigne = false %}
+  {% endif %}
+  <div class="card">
+    <a href="">
+      <img src="{{asset('/images/image.jpg')}}" class="card-img-top">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title"><strong>{{formationCourante.nom}}</strong></h5>
+      <p class="card-text"><strong>Lieu :</strong> {{formationCourante.lieu}}</p>
+    </div>
+  </div>
+  {% if loop.index % 3 == 0 %}
+  </div>
+  <br />
+  {% endif %}
+  {% endfor %}
 
 {% endblock %}

@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Entreprise;
+use App\Entity\Formation;
+use App\Entity\Stage;
 
 class ProStageController extends AbstractController
 {
@@ -13,7 +16,14 @@ class ProStageController extends AbstractController
     */
     public function index(): Response
     {
-        return $this->render('pro_stage/index.html.twig');
+      // Récupérer le repository de l'entité Stage
+      $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+
+      // Récupérer les stages enregistrés en BD
+      $stages = $repositoryStage->findAll();
+
+      // Envoyer les stages récupérés à la vue chargée de les afficher
+      return $this->render('pro_stage/index.html.twig', ['stages' => $stages]);
     }
 
     /**
@@ -21,7 +31,14 @@ class ProStageController extends AbstractController
     */
     public function entreprises(): Response
     {
-      return $this->render('pro_stage/entreprises.html.twig');
+      // Récupérer le repository de l'entité Entreprise
+      $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+
+      // Récupérer les entreprises enregistrées en BD
+      $entreprises = $repositoryEntreprise->findAll();
+
+      // Envoyer les entreprises récupérées à la vue chargée de les afficher
+      return $this->render('pro_stage/entreprises.html.twig', ['entreprises' => $entreprises]);
     }
 
     /**
@@ -29,15 +46,29 @@ class ProStageController extends AbstractController
     */
     public function formations(): Response
     {
-      return $this->render('pro_stage/formations.html.twig');
+      // Récupérer le repository de l'entité Formation
+      $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
+
+      // Récupérer les formations enregistrées en BD
+      $formations = $repositoryFormation->findAll();
+
+      // Envoyer les formations récupérées à la vue chargée de les afficher
+      return $this->render('pro_stage/formations.html.twig', ['formations' => $formations]);
     }
 
     /**
-    * @Route("/stages/{id}", name="pro_stage_stages")
+    * @Route("/stages/{id}", name="pro_stage_stage")
     */
-    public function stages($id): Response
+    public function afficherStage(Stage $id): Response
     {
+      // Récupérer le repository de l'entité Stage
+      $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+
+      // Récupérer les stages enregistrées en BD
+      $stage = $repositoryStage->find($id);
+
+      // Envoyer les entreprises récupérées à la vue chargée de les afficher
       return $this->render('pro_stage/stages.html.twig',
-      ['id' => $id]);
+      ['stage' => $stage]);
     }
 }
