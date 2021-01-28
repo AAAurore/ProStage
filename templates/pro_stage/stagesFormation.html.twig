@@ -1,24 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block titrePage %}
-<h1>Formations</h1>
+<h1>Nom du formation : <strong>{{formation.nom}}</strong></h1>
 {% endblock %}
 
 {% block contenuPage %}
 {% set debutNouvelleLigne = true %}
-
-{% for formationCourante in formations %}
+{% for stagesFormationCourante in stagesFormation %}
 {% if debutNouvelleLigne == true %}
   <div class="card-deck">
     {% set debutNouvelleLigne = false %}
   {% endif %}
   <div class="card">
-    <a href="{{path('pro_stage_stagesFormation', {id:formationCourante.id})}}">
+    <a href="{{path('pro_stage_stage', {id:stagesFormationCourante.id})}}">
       <img src="{{asset('/images/image.jpg')}}" class="card-img-top">
     </a>
     <div class="card-body">
-      <h5 class="card-title"><strong>{{formationCourante.nom}}</strong></h5>
-      <p class="card-text"><strong>Lieu :</strong> {{formationCourante.lieu}}</p>
+      <h5 class="card-title">{{stagesFormationCourante.titre}}</h5>
+      <p class="card-text">{{stagesFormationCourante.description}}</p>
+      <p class="card-text">
+        <small class="text-muted">Déposé le {{stagesFormationCourante.dateDepot | date("d/m/Y")}}</small>
+      </p>
     </div>
   </div>
   {% if loop.index % 3 == 0 %}
@@ -26,5 +28,4 @@
   <br />
   {% endif %}
   {% endfor %}
-
 {% endblock %}

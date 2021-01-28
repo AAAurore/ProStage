@@ -71,4 +71,36 @@ class ProStageController extends AbstractController
       return $this->render('pro_stage/stages.html.twig',
       ['stage' => $stage]);
     }
+
+    /**
+    * @Route("/entreprise/{id}", name="pro_stage_stagesEntreprise")
+    */
+    public function afficherStagesEntreprise(Entreprise $entreprise): Response
+    {
+      // Récupérer le repository de l'entité Stage
+      //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+
+      // Récupérer les tages enregistrés en BD
+      //$stagesEntreprise = $repositoryStage->findByEntreprise($id);
+
+      // Envoyer les entreprises récupérés à la vue chargée de les afficher
+      return $this->render('pro_stage/stagesEntreprise.html.twig',
+      ['stagesEntreprise' => $entreprise->getStage(), 'entreprise' => $entreprise]);
+    }
+
+    /**
+    * @Route("/formation/{id}", name="pro_stage_stagesFormation")
+    */
+    public function afficherStagesFormation(Formation $formation): Response
+    {
+      // Récupérer le repository de l'entité Stage
+      //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+
+      // Récupérer les tages enregistrés en BD
+      //$stagesFormation = $repositoryStage->findByFormation($id);
+
+      // Envoyer les entreprises récupérés à la vue chargée de les afficher
+      return $this->render('pro_stage/stagesFormation.html.twig',
+      ['stagesFormation' => $formation->getStage(), 'formation' => $formation]);
+    }
 }

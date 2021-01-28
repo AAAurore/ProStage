@@ -13,7 +13,7 @@
     {% set debutNouvelleLigne = false %}
   {% endif %}
   <div class="card">
-    <a href="">
+    <a href="{{path('pro_stage_stagesEntreprise', {id:entrepriseCourante.id})}}">
       <img src="{{asset('/images/image.jpg')}}" class="card-img-top">
     </a>
     <div class="card-body">

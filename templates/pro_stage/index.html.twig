@@ -37,20 +37,20 @@
 
 {% set debutNouvelleLigne = true %}
 
-{% for stageCourante in stages %}
+{% for ​​stageCourant in stages %}
 {% if debutNouvelleLigne == true %}
   <div class="card-deck">
     {% set debutNouvelleLigne = false %}
   {% endif %}
   <div class="card">
-    <a href="{{path('pro_stage_stage', {id:stageCourante.id})}}">
+    <a href="{{path('pro_stage_stage', {id:​​stageCourant.id})}}">​​
       <img src="{{asset('/images/image.jpg')}}" class="card-img-top">
     </a>
     <div class="card-body">
-      <h5 class="card-title">{{stageCourante.titre}}</h5>
-      <p class="card-text">{{stageCourante.description}}</p>
+      <h5 class="card-title">{{​​stageCourant.titre}}</h5>
+      <p class="card-text">{{​​stageCourant.description}}</p>
       <p class="card-text">
-        <small class="text-muted">Déposé le {{stageCourante.dateDepot | date("d/m/Y")}}</small>
+        <small class="text-muted">Déposé le {{​​stageCourant.dateDepot | date("d/m/Y")}}</small>
       </p>
     </div>
   </div>
