@@ -8,16 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Repository\EntrepriseRepository;
+use App\Repository\FormationRepository;
+use App\Repository\StageRepository;
 
 class ProStageController extends AbstractController
 {
     /**
     * @Route("/", name="pro_stage_accueil")
     */
-    public function index(): Response
+    public function index(StageRepository $repositoryStage): Response
     {
       // Récupérer le repository de l'entité Stage
-      $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+      //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
       // Récupérer les stages enregistrés en BD
       $stages = $repositoryStage->findAll();
@@ -29,10 +32,10 @@ class ProStageController extends AbstractController
     /**
     * @Route("/entreprises", name="pro_stage_entreprises")
     */
-    public function entreprises(): Response
+    public function entreprises(EntrepriseRepository $repositoryEntreprise): Response
     {
       // Récupérer le repository de l'entité Entreprise
-      $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+      //$repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
 
       // Récupérer les entreprises enregistrées en BD
       $entreprises = $repositoryEntreprise->findAll();
@@ -44,10 +47,10 @@ class ProStageController extends AbstractController
     /**
     * @Route("/formations", name="pro_stage_formations")
     */
-    public function formations(): Response
+    public function formations(FormationRepository $repositoryFormation): Response
     {
       // Récupérer le repository de l'entité Formation
-      $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
+      //$repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
 
       // Récupérer les formations enregistrées en BD
       $formations = $repositoryFormation->findAll();
@@ -59,13 +62,13 @@ class ProStageController extends AbstractController
     /**
     * @Route("/stages/{id}", name="pro_stage_stage")
     */
-    public function afficherStage(Stage $id): Response
+    public function afficherStage(Stage $stage): Response
     {
       // Récupérer le repository de l'entité Stage
-      $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+      //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
       // Récupérer les stages enregistrés en BD
-      $stage = $repositoryStage->find($id);
+      //$stage = $repositoryStage->find($id);
 
       // Envoyer les stages récupérés à la vue chargée de les afficher
       return $this->render('pro_stage/stage.html.twig',
@@ -75,23 +78,23 @@ class ProStageController extends AbstractController
     /**
     * @Route("/entreprise/{id}", name="pro_stage_stagesEntreprise")
     */
-    public function afficherStagesEntreprise(Entreprise $entreprise): Response
+    public function afficherStagesEntreprise(StageRepository $repositoryStage, Entreprise $entreprise): Response
     {
       // Récupérer le repository de l'entité Stage
       //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
       // Récupérer les stages enregistrés en BD
-      //$stagesEntreprise = $repositoryStage->findByEntreprise($id);
+      $stagesEntreprise = $repositoryStage->findByEntreprise($entreprise);
 
       // Envoyer les stages récupérés à la vue chargée de les afficher
       return $this->render('pro_stage/stagesEntreprise.html.twig',
-      ['stagesEntreprise' => $entreprise->getStage(), 'entreprise' => $entreprise]);
+      ['stagesEntreprise' => $stagesEntreprise, 'entreprise' => $entreprise]);
     }
 
     /**
     * @Route("/formation/{id}", name="pro_stage_stagesFormation")
     */
-    public function afficherStagesFormation(Formation $formation): Response
+    public function afficherStagesFormation(StageRepository $repositoryStage, Formation $formation): Response
     {
       // Récupérer le repository de l'entité Stage
       //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
