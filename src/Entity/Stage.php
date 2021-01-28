@@ -42,12 +42,12 @@ class Stage
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="Stage")
      */
-    private $entreprise;
+    private $entreprise;  // Une seule entreprise pour un stage
 
     /**
      * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="Stage")
      */
-    private $formations;
+    private $formations;  // Une ou plusieurs formations pour un stage
 
     public function __construct()
     {

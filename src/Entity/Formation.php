@@ -32,7 +32,7 @@ class Formation
     /**
      * @ORM\ManyToMany(targetEntity=Stage::class, inversedBy="formations")
      */
-    private $Stage;
+    private $Stage;  // Un ou plusieurs stages pour une formation
 
     public function __construct()
     {

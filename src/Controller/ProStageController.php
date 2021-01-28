@@ -64,11 +64,11 @@ class ProStageController extends AbstractController
       // Récupérer le repository de l'entité Stage
       $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
-      // Récupérer les stages enregistrées en BD
+      // Récupérer les stages enregistrés en BD
       $stage = $repositoryStage->find($id);
 
-      // Envoyer les entreprises récupérées à la vue chargée de les afficher
-      return $this->render('pro_stage/stages.html.twig',
+      // Envoyer les stages récupérés à la vue chargée de les afficher
+      return $this->render('pro_stage/stage.html.twig',
       ['stage' => $stage]);
     }
 
@@ -80,10 +80,10 @@ class ProStageController extends AbstractController
       // Récupérer le repository de l'entité Stage
       //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
-      // Récupérer les tages enregistrés en BD
+      // Récupérer les stages enregistrés en BD
       //$stagesEntreprise = $repositoryStage->findByEntreprise($id);
 
-      // Envoyer les entreprises récupérés à la vue chargée de les afficher
+      // Envoyer les stages récupérés à la vue chargée de les afficher
       return $this->render('pro_stage/stagesEntreprise.html.twig',
       ['stagesEntreprise' => $entreprise->getStage(), 'entreprise' => $entreprise]);
     }
@@ -96,10 +96,10 @@ class ProStageController extends AbstractController
       // Récupérer le repository de l'entité Stage
       //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
-      // Récupérer les tages enregistrés en BD
+      // Récupérer les stages enregistrés en BD
       //$stagesFormation = $repositoryStage->findByFormation($id);
 
-      // Envoyer les entreprises récupérés à la vue chargée de les afficher
+      // Envoyer les stages récupérés à la vue chargée de les afficher
       return $this->render('pro_stage/stagesFormation.html.twig',
       ['stagesFormation' => $formation->getStage(), 'formation' => $formation]);
     }

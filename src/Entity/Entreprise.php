@@ -37,7 +37,7 @@ class Entreprise
     /**
      * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="entreprise")
      */
-    private $Stage;
+    private $Stage;  // Un ou plusieurs stages pour une entreprise
 
     public function __construct()
     {
