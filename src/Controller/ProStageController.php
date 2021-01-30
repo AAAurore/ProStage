@@ -100,10 +100,10 @@ class ProStageController extends AbstractController
       //$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
 
       // Récupérer les stages enregistrés en BD
-      //$stagesFormation = $repositoryStage->findByFormation($id);
+      $stagesFormation = $repositoryStage->findByDateDepotDQL($formation);
 
       // Envoyer les stages récupérés à la vue chargée de les afficher
       return $this->render('pro_stage/stagesFormation.html.twig',
-      ['stagesFormation' => $formation->getStage(), 'formation' => $formation]);
+      ['stagesFormation' => $stagesFormation, 'formation' => $formation]);
     }
 }

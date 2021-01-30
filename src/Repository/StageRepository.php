@@ -45,6 +45,32 @@ class StageRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * @return Stage[] Returns an array of Stage objects
+     */
+
+   public function findByDateDepotDQL($formation)
+   {
+       // Récupérer le gestionnaire d'entité
+       $entityManager = $this->getEntityManager();
+
+       // Construction de la requête sur mesure
+       $requete = $entityManager->createQuery(
+         'SELECT s, f
+          FROM App\Entity\Stage s
+          JOIN s.formations f
+          WHERE f.id = :formation
+          ORDER BY s.dateDepot DESC'
+       );
+
+       // Définition de la valeur du paramètre injecté dans la requête
+       $requete->setParameter('formation', $formation);
+
+       // Exécution de la requête et envoi des résultats
+       return $requete->execute();
+   }
+
+
     /*
     public function findOneBySomeField($value): ?Stage
     {
