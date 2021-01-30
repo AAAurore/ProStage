@@ -76,7 +76,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-    * @Route("/entreprise/{id}", name="pro_stage_stagesEntreprise")
+    * @Route("/entreprise/{nom}", name="pro_stage_stagesEntreprise")
     */
     public function afficherStagesEntreprise(StageRepository $repositoryStage, Entreprise $entreprise): Response
     {
@@ -92,7 +92,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-    * @Route("/formation/{id}", name="pro_stage_stagesFormation")
+    * @Route("/formation/{nom}", name="pro_stage_stagesFormation")
     */
     public function afficherStagesFormation(StageRepository $repositoryStage, Formation $formation): Response
     {
