@@ -32,7 +32,30 @@ class StageRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findByEntreprise($entreprise)
+
+    /**
+     * @return Stage[] Returns an array of Stage objects
+     */
+
+   public function findByDateDepotDQL()
+   {
+       // Récupérer le gestionnaire d'entité
+       $entityManager = $this->getEntityManager();
+
+       // Construction de la requête sur mesure
+       $requete = $entityManager->createQuery(
+         'SELECT s, e
+          FROM App\Entity\Stage s
+          JOIN s.entreprise e
+          ORDER BY s.dateDepot DESC'
+       );
+
+       // Exécution de la requête et envoi des résultats
+       return $requete->execute();
+   }
+
+
+    public function findByDateDepotEntreprise($entreprise)
     {
         return $this->createQueryBuilder('s')
             ->join('s.entreprise', 'e')
@@ -49,16 +72,17 @@ class StageRepository extends ServiceEntityRepository
      * @return Stage[] Returns an array of Stage objects
      */
 
-   public function findByDateDepotDQL($formation)
+   public function findByDateDepotFormationDQL($formation)
    {
        // Récupérer le gestionnaire d'entité
        $entityManager = $this->getEntityManager();
 
        // Construction de la requête sur mesure
        $requete = $entityManager->createQuery(
-         'SELECT s, f
+         'SELECT s, f, e
           FROM App\Entity\Stage s
           JOIN s.formations f
+          JOIN s.entreprise e
           WHERE f.id = :formation
           ORDER BY s.dateDepot DESC'
        );
