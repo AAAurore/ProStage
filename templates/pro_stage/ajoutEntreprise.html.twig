@@ -7,5 +7,21 @@
 {% block contenuPage %}
 Saisir les caractéristiques de l'entreprise que vous souhaitez partager.
 
-{{ form(vueFormulaireEntreprise) }}
+{{ form_start(vueFormulaireEntreprise) }}
+  <div> <!-- Affichage du champ de saisie du nom de l'entreprise -->
+    {{ form_label(vueFormulaireEntreprise.nom) }}
+    {{ form_errors(vueFormulaireEntreprise.nom) }}
+    {{ form_widget(vueFormulaireEntreprise.nom) }}
+  </div>
+  <div> <!-- Affichage du champ de saisie de l'adresse de l'entreprise -->
+    {{ form_label(vueFormulaireEntreprise.adresse) }}
+    {{ form_errors(vueFormulaireEntreprise.adresse) }}
+    {{ form_widget(vueFormulaireEntreprise.adresse) }}
+  </div>
+  <div> <!-- Affichage du champ de saisie du site de l'entreprise -->
+    {{ form_label(vueFormulaireEntreprise.site) }}
+    {{ form_errors(vueFormulaireEntreprise.site) }}
+    {{ form_widget(vueFormulaireEntreprise.site) }}
+  </div>
+{{ form_end(vueFormulaireEntreprise) }}
 {% endblock %}
