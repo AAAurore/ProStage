@@ -13,6 +13,7 @@ use App\Repository\FormationRepository;
 use App\Repository\StageRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Form\EntrepriseType;
 
 class ProStageController extends AbstractController
 {
@@ -40,11 +41,7 @@ class ProStageController extends AbstractController
       $entreprise = new Entreprise();
 
       // Création du formulaire permettant de saisir une entreprise
-      $formulaireEntreprise = $this ->createFormBuilder($entreprise)
-                                    ->add('nom')
-                                    ->add('adresse')
-                                    ->add('site')
-                                    ->getForm();
+      $formulaireEntreprise = $this ->createForm(EntrepriseType::class, $entreprise);
 
       /*On demande au formulaire d'analyser la dernière requête http. Si le tableau POST (car le formulaire est transmis par le protocole POST) contenu de cette requête contient des variables nom, adresse et site alors la méthode handleRequest() récupère les valeurs de ces variables et les affecte à l'objet $entreprise */
       $formulaireEntreprise->handleRequest($request);
@@ -57,8 +54,8 @@ class ProStageController extends AbstractController
         $manager->persist($entreprise);
         $manager->flush();
 
-        // Rediriger l'utilisateur vers la page d'accueil
-        return $this->redirectToRoute('pro_stage_accueil');
+        // Rediriger l'utilisateur vers la page des entreprises
+        return $this->redirectToRoute('pro_stage_entreprises');
       }
 
       // Création de la représentation graphique du $formulaireEntreprise
@@ -74,11 +71,7 @@ class ProStageController extends AbstractController
     public function modifierEntreprise(Request $request, ManagerRegistry $managerRegistry, Entreprise $entreprise): Response
     {
       // Création du formulaire permettant de modifier une entreprise
-      $formulaireEntreprise = $this ->createFormBuilder($entreprise)
-                                    ->add('nom')
-                                    ->add('adresse')
-                                    ->add('site')
-                                    ->getForm();
+      $formulaireEntreprise = $this ->createForm(EntrepriseType::class, $entreprise);
 
       /*On demande au formulaire d'analyser la dernière requête http. Si le tableau POST (car le formulaire est transmis par le protocole POST) contenu de cette requête contient des variables nom, adresse et site alors la méthode handleRequest() récupère les valeurs de ces variables et les affecte à l'objet $entreprise */
       $formulaireEntreprise->handleRequest($request);
@@ -91,8 +84,8 @@ class ProStageController extends AbstractController
         $manager->persist($entreprise);
         $manager->flush();
 
-        // Rediriger l'utilisateur vers la page d'accueil
-        return $this->redirectToRoute('pro_stage_accueil');
+        // Rediriger l'utilisateur vers la page des entreprises
+        return $this->redirectToRoute('pro_stage_entreprises');
       }
 
       // Création de la représentation graphique du $formulaireEntreprise
