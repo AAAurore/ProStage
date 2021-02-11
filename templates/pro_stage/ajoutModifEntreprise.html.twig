@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block titrePage %}
+{% if action == "ajouter" %}
 <h1>Ajout d'une entreprise</h1>
+{% else %}
+<h1>Modification d'une entreprise</h1>
+{% endif %}
 {% endblock %}
 
 {% block contenuPage %}
