@@ -11,6 +11,8 @@ use App\Entity\Stage;
 use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
 use App\Repository\StageRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ProStageController extends AbstractController
 {
@@ -32,7 +34,7 @@ class ProStageController extends AbstractController
     /**
     * @Route("/entreprises/ajouter", name="pro_stage_ajoutEntreprise")
     */
-    public function ajouterEntreprise(): Response
+    public function ajouterEntreprise(Request $request, ManagerRegistry $managerRegistry): Response
     {
       // Création d'une entreprise vierge qui sera remplie par le formulaire
       $entreprise = new Entreprise();
@@ -43,6 +45,21 @@ class ProStageController extends AbstractController
                                     ->add('adresse')
                                     ->add('site')
                                     ->getForm();
+
+      /*On demande au formulaire d'analyser la dernière requête http. Si le tableau POST (car le formulaire est transmis par le protocole POST) contenu de cette requête contient des variables nom, adresse et site alors la méthode handleRequest() récupère les valeurs de ces variables et les affecte à l'objet $entreprise */
+      $formulaireEntreprise->handleRequest($request);
+
+      // Traiter les données du formulaire s'il a été soumis
+      if ($formulaireEntreprise->isSubmitted())
+      {
+        // Enregistrer l'entreprise en BD
+        $manager = $managerRegistry->getManager();
+        $manager->persist($entreprise);
+        $manager->flush();
+
+        // Rediriger l'utilisateur vers la page d'accueil
+        return $this->redirectToRoute('pro_stage_accueil');
+      }
 
       // Création de la représentation graphique du $formulaireEntreprise
       $vueFormulaireEntreprise = $formulaireEntreprise->createView();
