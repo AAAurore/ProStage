@@ -13,19 +13,13 @@
 
 {{ form_start(vueFormulaireEntreprise) }}
   <div> <!-- Affichage du champ de saisie du nom de l'entreprise -->
-    {{ form_label(vueFormulaireEntreprise.nom) }}
-    {{ form_errors(vueFormulaireEntreprise.nom) }}
-    {{ form_widget(vueFormulaireEntreprise.nom, {'attr':{'placeholder':"Nom de l'entreprise..."}}) }}
+    {{ form_row(vueFormulaireEntreprise.nom, {'attr':{'placeholder':"Nom de l'entreprise..."}}) }}
   </div><br>
   <div> <!-- Affichage du champ de saisie de l'adresse de l'entreprise -->
-    {{ form_label(vueFormulaireEntreprise.adresse) }}
-    {{ form_errors(vueFormulaireEntreprise.adresse) }}
-    {{ form_widget(vueFormulaireEntreprise.adresse, {'attr':{'placeholder':"Adresse de l'entreprise..."}}) }}
+    {{ form_row(vueFormulaireEntreprise.adresse, {'attr':{'placeholder':"Adresse de l'entreprise..."}}) }}
   </div><br>
   <div> <!-- Affichage du champ de saisie du site de l'entreprise -->
-    {{ form_label(vueFormulaireEntreprise.site) }}
-    {{ form_errors(vueFormulaireEntreprise.site) }}
-    {{ form_widget(vueFormulaireEntreprise.site, {'attr':{'placeholder':"Site de l'entreprise..."}}) }}
+    {{ form_row(vueFormulaireEntreprise.site, {'attr':{'placeholder':"Site de l'entreprise..."}}) }}
   </div><br>
   <button type="submit" class="btn btn-dark">Enregistrer</button>
 {{ form_end(vueFormulaireEntreprise) }}
