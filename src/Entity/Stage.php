@@ -40,7 +40,7 @@ class Stage
     private $dateDepot;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="Stage")
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="Stage", cascade={"persist"})
      */
     private $entreprise;  // Une seule entreprise pour un stage
 

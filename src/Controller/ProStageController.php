@@ -14,6 +14,7 @@ use App\Repository\StageRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 class ProStageController extends AbstractController
 {
@@ -93,6 +94,71 @@ class ProStageController extends AbstractController
 
       // Afficher la page présentant le formulaire de modification d'une entreprise
       return $this->render('pro_stage/ajoutModifEntreprise.html.twig', ['vueFormulaireEntreprise' => $vueFormulaireEntreprise, 'action' => "modifier"]);
+    }
+
+    /**
+    * @Route("/stages/ajouter", name="pro_stage_ajoutStage")
+    */
+    public function ajouterStage(Request $request, ManagerRegistry $managerRegistry): Response
+    {
+      // Création d'un stage vierge qui sera remplie par le formulaire
+      $stage = new Stage();
+
+      // Création du formulaire permettant de saisir un stage
+      $formulaireStage = $this ->createForm(StageType::class, $stage);
+
+      /*On demande au formulaire d'analyser la dernière requête http. Si le tableau POST (car le formulaire est transmis par le protocole POST) contenu de cette requête contient des variables alors la méthode handleRequest() récupère les valeurs de ces variables et les affecte à l'objet $stage */
+      $formulaireStage->handleRequest($request);
+
+      // Traiter les données du formulaire s'il a été soumis
+      if ($formulaireStage->isSubmitted() && $formulaireStage->isValid())
+      {
+        // Mémoriser la date d'ajout du stagesEntreprise
+        $stage->setDateDepot(new \dateTime());
+        // Enregistrer le stage en BD
+        $manager = $managerRegistry->getManager();
+        $manager->persist($stage);
+        $manager->flush();
+
+        // Rediriger l'utilisateur vers la page d'accueil
+        return $this->redirectToRoute('pro_stage_accueil');
+      }
+
+      // Création de la représentation graphique du $formulaireStage
+      $vueFormulaireStage = $formulaireStage->createView();
+
+      // Afficher la page présentant le formulaire d'ajout d'un stage
+      return $this->render('pro_stage/ajoutModifStage.html.twig', ['vueFormulaireStage' => $vueFormulaireStage, 'action' => "ajouter"]);
+    }
+
+    /**
+    * @Route("/stages/modifier/{id}", name="pro_stage_modifStage")
+    */
+    public function modifierStage(Request $request, ManagerRegistry $managerRegistry, Stage $stage): Response
+    {
+      // Création du formulaire permettant de modifier un stage
+      $formulaireStage = $this ->createForm(StageType::class, $stage);
+
+      /*On demande au formulaire d'analyser la dernière requête http. Si le tableau POST (car le formulaire est transmis par le protocole POST) contenu de cette requête contient des variables alors la méthode handleRequest() récupère les valeurs de ces variables et les affecte à l'objet $stage */
+      $formulaireStage->handleRequest($request);
+
+      // Traiter les données du formulaire s'il a été soumis
+      if ($formulaireStage->isSubmitted())
+      {
+        // Enregistrer le stage en BD
+        $manager = $managerRegistry->getManager();
+        $manager->persist($stage);
+        $manager->flush();
+
+        // Rediriger l'utilisateur vers la page d'accueil'
+        return $this->redirectToRoute('pro_stage_accueil');
+      }
+
+      // Création de la représentation graphique du $formulaireStage
+      $vueFormulaireStage = $formulaireStage->createView();
+
+      // Afficher la page présentant le formulaire de modification d'un stage
+      return $this->render('pro_stage/ajoutModifStage.html.twig', ['vueFormulaireStage' => $vueFormulaireStage, 'action' => "modifier"]);
     }
 
     /**

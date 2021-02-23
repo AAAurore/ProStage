@@ -49,6 +49,7 @@
     <div class="card-body">
       <h5 class="card-title">{{​​stageCourant.titre}} - <strong>{{​​stageCourant.entreprise.nom}}</strong></h5>
       <p class="card-text">{{​​stageCourant.description}}</p>
+      <a class="card-link" href="{{path('pro_stage_modifStage',{'id':​​stageCourant.id})}}">Modifier</a>
       <p class="card-text">
         <small class="text-muted">Déposé le {{​​stageCourant.dateDepot | date("d/m/Y")}}</small>
       </p>
