@@ -6,6 +6,7 @@ use App\Repository\StageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StageRepository::class)
@@ -21,16 +22,25 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
+     * @Assert\NotBlank(message = "Le titre doit être renseigné.")
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=1000, nullable=true)
+     * @ORM\Column(type="text", length=1000, nullable=true)
+     * @Assert\NotBlank(message = "La description doit être renseignée.")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 1000,
+     *      minMessage = "La description doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "La description doit faire au maximum {{ limit }} caractères."
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\NotBlank(message = "L'acivité doit être renseigné.")
      */
     private $activite;
 
@@ -45,7 +55,7 @@ class Stage
     private $entreprise;  // Une seule entreprise pour un stage
 
     /**
-     * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="Stage")
+     * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="Stage", cascade={"persist"})
      */
     private $formations;  // Une ou plusieurs formations pour un stage
 
