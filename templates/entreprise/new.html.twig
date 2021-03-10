@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}Créer une nouvelle entreprise{% endblock %}
+
+{% block contenuPage %}
+    {{ include('entreprise/_form.html.twig') }}
+
+    <a href="{{ path('entreprise_index') }}">Retour à la liste des entreprises</a>
+{% endblock %}
