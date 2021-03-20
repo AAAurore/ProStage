@@ -10,7 +10,7 @@
                 <th>Nom</th>
                 <th>Adresse</th>
                 <th>Site</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +22,7 @@
                 <td>{{ entreprise.site }}</td>
                 <td>
                     <a href="{{ path('entreprise_show', {'id': entreprise.id}) }}">Consulter</a>
+                    <br>
                     <a href="{{ path('entreprise_edit', {'id': entreprise.id}) }}">Éditer</a>
                 </td>
             </tr>
