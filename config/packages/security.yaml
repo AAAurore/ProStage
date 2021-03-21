@@ -1,7 +1,12 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        in_memory:
+          memory:
+            users:
+              patrick: { password: $2y$10$1wkMog.a9AT3jIVvam6EiuIuRohZ8ypgFJR6ekfSw.itnpMEKVbQe, roles: ROLE_ADMIN }
+              pantxika: { password: $2y$10$Qt6HNMzuixN1S8kuxrIDIODY8hmXDboRX4NbuX3biCJJgGXPRDoGO, roles: ROLE_USER }
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -23,3 +28,8 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    encoders:
+      Symfony\Component\Security\Core\User\User:
+        algorithm: bcrypt
+        cost: 10
