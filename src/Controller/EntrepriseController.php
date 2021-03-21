@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/entreprise")
+ * @Route("/admin/entreprise")
  */
 class EntrepriseController extends AbstractController
 {
