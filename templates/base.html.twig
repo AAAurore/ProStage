@@ -104,13 +104,6 @@
                      <a class="nav-link" href="{{path('entreprise_new')}}"><i class="icon-plus-1"></i>
                        Ajouter une entreprise</a>
                   </li>
-                  {% endif %}
-                  <li class="nav-item active">
-                     <a class="nav-link" href="{{path('pro_stage_ajoutStage')}}"><i class="icon-plus-1"></i>
-                       Ajouter un stage</a>
-                  </li>
-                  <!-- Fonctionnalités pour l'administrateur -->
-                  {% if is_granted('ROLE_ADMIN') %}
                   <li class="nav-item active">
                      <a class="nav-link" href="{{path('entreprise_index')}}"><i class="icon-plus-1"></i>
                        Gérer les entreprises</a>
@@ -118,6 +111,10 @@
                   {% endif %}
                   <!-- Fonctionnalités pour l'utilisateur authentifié -->
                   {% if is_granted('ROLE_USER') %}
+                  <li class="nav-item active">
+                     <a class="nav-link" href="{{path('pro_stage_ajoutStage')}}"><i class="icon-plus-1"></i>
+                       Ajouter un stage</a>
+                  </li>
                   <li class="nav-item active">
                      <a class="nav-link" href="{{path('app_logout')}}">
                        {{ app.user.prenom }} {{ app.user.nom }}
