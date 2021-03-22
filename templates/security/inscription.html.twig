@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}Inscription sur ProStage{% endblock %}
+
+{% block contenuPage %}
+{{ form_start(vueFormulaireUtilisateur) }}
+  <div> <!-- Affichage du champ de saisie du prenom -->
+    {{ form_row(vueFormulaireUtilisateur.prenom, {'attr':{'placeholder':"Prénom"}}) }}
+  </div>
+  <div> <!-- Affichage du champ de saisie du nom -->
+    {{ form_row(vueFormulaireUtilisateur.nom, {'attr':{'placeholder':"Nom"}}) }}
+  </div>
+  <div> <!-- Affichage du champ de saisie de l'email -->
+    {{ form_row(vueFormulaireUtilisateur.email, {'attr':{'placeholder':"Email"}}) }}
+  </div>
+  <div> <!-- Affichage du champ de saisie du mot de passe -->
+    {{ form_row(vueFormulaireUtilisateur.password, {'attr':{'placeholder':"Mot de passe"}}) }}
+  </div><br>
+  <button type="submit" class="btn btn-dark">S'inscrire</button>
+{{ form_end(vueFormulaireUtilisateur) }}
+{% endblock %}
