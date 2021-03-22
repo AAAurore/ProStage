@@ -106,10 +106,20 @@
                      <a class="nav-link" href="{{path('pro_stage_ajoutStage')}}"><i class="icon-plus-1"></i>
                        Ajouter un stage</a>
                   </li>
+                  {% if is_granted('ROLE_USER') %}
                   <li class="nav-item active">
-                     <a class="nav-link" href="#"><i class="icon-user"></i>
+                     <a class="nav-link" href="{{path('app_logout')}}">
+                       {{ app.user.prenom }} {{ app.user.nom }}
+                       <i class="icon-user"></i>
                        Déconnexion</a>
                   </li>
+                  {% else %}
+                  <li class="nav-item active">
+                     <a class="nav-link" href="{{path('app_login')}}">
+                       <i class="icon-user"></i>
+                       Connexion</a>
+                  </li>
+                  {% endif %}
                 </ul>
               </div>
             </nav>
