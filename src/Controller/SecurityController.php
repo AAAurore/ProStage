@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
@@ -41,7 +42,7 @@ class SecurityController extends AbstractController
     /**
     * @Route("/inscription", name="app_inscription")
     */
-    public function inscription(Request $request, ManagerRegistry $managerRegistry): Response
+    public function inscription(Request $request, ManagerRegistry $managerRegistry, UserPasswordEncoderInterface $encoder): Response
     {
       // Création d'unutilisateur vide
       $utilisateur = new User();
@@ -55,13 +56,20 @@ class SecurityController extends AbstractController
       // Traiter les données du formulaire s'il a été soumis
       if ($formulaireUtilisateur->isSubmitted() && $formulaireUtilisateur->isValid())
       {
-        // Enregistrer l'utilisateur en BD
-        // $manager = $managerRegistry->getManager();
-        // $manager->persist($utilisateur);
-        // $manager->flush();
+        // Attribuer un rôle à l'utilisateur
+        $utilisateur->setRoles(['ROLE_USER']);
 
-        // Rediriger l'utilisateur vers la page d'accueil
-        return $this->redirectToRoute('pro_stage_accueil');
+        // Encoder le mot de passe de l'utilisateur
+        $encoderPassword = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
+        $utilisateur->setPassword($encoderPassword);
+
+        // Enregistrer l'utilisateur en BD
+        $manager = $managerRegistry->getManager();
+        $manager->persist($utilisateur);
+        $manager->flush();
+
+        // Rediriger l'utilisateur vers la page de connexion
+        return $this->redirectToRoute('app_login');
       }
 
       // Création de la représentation graphique du $vueFormulaireUtilisateur
