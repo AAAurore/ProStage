@@ -35,7 +35,8 @@ security:
     access_control:
         - { path: ^/entreprise/new, roles: ROLE_ADMIN }
         - { path: ^/stages/ajouter, roles: [ROLE_ADMIN, ROLE_USER] }
-        - { path: ^/formation/, roles: ROLE_ADMIN }
+        - { path: ^/formation, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
     encoders:
