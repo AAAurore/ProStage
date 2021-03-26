@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/entreprise")
+ * @Route("/entreprise")
  */
 class EntrepriseController extends AbstractController
 {
@@ -59,7 +59,7 @@ class EntrepriseController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="entreprise_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="entreprise_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Entreprise $entreprise): Response
     {

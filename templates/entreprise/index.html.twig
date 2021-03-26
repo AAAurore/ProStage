@@ -34,5 +34,7 @@
         </tbody>
     </table>
 
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('entreprise_new') }}">Créer une nouvelle entreprise</a>
+    {% endif %}
 {% endblock %}

@@ -21,7 +21,9 @@
                 <td>
                     <a href="{{ path('formation_show', {'id': formation.id}) }}">Consulter</a>
                     <br>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('formation_edit', {'id': formation.id}) }}">Éditer</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -32,5 +34,7 @@
         </tbody>
     </table>
 
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('formation_new') }}">Créer une nouvelle formation</a>
+    {% endif %}
 {% endblock %}

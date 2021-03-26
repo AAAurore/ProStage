@@ -6,8 +6,6 @@
 
 {% block contenuPage %}
 <div class="list-group">
-  <!-- Fonctionnalités pour l'administrateur -->
-  {% if is_granted('ROLE_ADMIN') %}
   <a href="{{path('entreprise_index')}}" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">
@@ -18,7 +16,8 @@
       Vous trouverez les dernières entreprises ayant proposé un stage.
     </p>
   </a>
-  {% endif %}
+  <!-- Fonctionnalités pour l'administrateur -->
+  {% if is_granted('ROLE_ADMIN') %}
   <a href="{{path('formation_index')}}" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">
@@ -30,8 +29,8 @@
     </p>
   </a>
   </div>
-
-<h3 style="margin-top:25px">
+  {% endif %}
+<h3 style="margin-top:30px">
   Stages
 </h3>
 <p>
