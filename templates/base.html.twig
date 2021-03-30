@@ -90,14 +90,21 @@
               <!-- Fonctionnalités pour l'administrateur -->
               {% if is_granted('ROLE_ADMIN') %}
               <li class="nav-item">
-                <a class="nav-link" href="{{path('formation_index')}}">Formations</a>
+                <a class="nav-link" href="{{path('pro_stage_formations')}}">Liste des formations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{path('pro_stage_entreprises')}}">
+                  Liste des entreprises</a>
               </li>
             </ul>
             <ul class="navbar-nav ml-md-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{{path('entreprise_index')}}"><i class="icon-plus-1"></i>
-                Gérer les entreprises</a>
-            </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{path('formation_index')}}"><i class="icon-plus-1"></i>Gérer les formations</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{path('entreprise_index')}}"><i class="icon-plus-1"></i>
+                  Gérer les entreprises</a>
+              </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{path('entreprise_new')}}"><i class="icon-plus-1"></i>
                   Ajouter une entreprise</a>

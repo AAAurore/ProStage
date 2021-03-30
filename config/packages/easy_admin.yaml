@@ -1,7 +1,14 @@
 easy_admin:
    entities:
-       # List the entity class name you want to manage
-       - App\Entity\Entreprise
-       - App\Entity\Formation
-       - App\Entity\Stage
-       - App\Entity\User
+        # List the entity class name you want to manage
+        - App\Entity\Entreprise
+        - App\Entity\Formation
+        - App\Entity\Stage
+        - App\Entity\User
+    design:
+         brand_color: '#FFD550'
+    # Entreprise:
+    #         class: App\Entity\Entreprise
+    #         label: 'Entreprises'
+    #         list:
+    #             title: "Entreprises les plus récentes"
