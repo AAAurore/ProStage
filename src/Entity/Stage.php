@@ -55,7 +55,7 @@ class Stage
     private $entreprise;  // Une seule entreprise pour un stage
 
     /**
-     * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="Stage", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Formation::class, inversedBy="Stage", cascade={"persist"})
      */
     private $formations;  // Une ou plusieurs formations pour un stage
 
@@ -137,6 +137,13 @@ class Stage
         return $this->formations;
     }
 
+    public function setFormations(Collection $formations): self
+    {
+        $this->formations = $formations;
+
+        return $this;
+    }
+
     public function addFormation(Formation $formation): self
     {
         if (!$this->formations->contains($formation)) {
@@ -158,6 +165,6 @@ class Stage
 
     public function __toString()
     {
-      return $this->getTitre();
+      return $this->getTitre()." - ".$this->getEntreprise();
     }
 }

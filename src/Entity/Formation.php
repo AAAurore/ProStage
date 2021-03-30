@@ -30,7 +30,7 @@ class Formation
     private $lieu;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Stage::class, inversedBy="formations")
+     * @ORM\ManyToMany(targetEntity=Stage::class, mappedBy="formations", cascade={"persist"})
      */
     private $Stage;  // Un ou plusieurs stages pour une formation
 
@@ -76,6 +76,13 @@ class Formation
         return $this->Stage;
     }
 
+    public function setStage(Collection $stages): self
+    {
+      $this->Stage = $stages;
+
+        return $this;
+    }
+
     public function addStage(Stage $stage): self
     {
         if (!$this->Stage->contains($stage)) {
@@ -90,5 +97,10 @@ class Formation
         $this->Stage->removeElement($stage);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+      return $this->getNom()." ".$this->getLieu();
     }
 }
