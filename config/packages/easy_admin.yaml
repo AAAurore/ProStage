@@ -1,14 +1,39 @@
 easy_admin:
-   entities:
-        # List the entity class name you want to manage
-        - App\Entity\Entreprise
-        - App\Entity\Formation
-        - App\Entity\Stage
-        - App\Entity\User
     design:
-         brand_color: '#FFD550'
-    # Entreprise:
-    #         class: App\Entity\Entreprise
-    #         label: 'Entreprises'
-    #         list:
-    #             title: "Entreprises les plus récentes"
+        brand_color: '#FFC300'
+    entities:
+        # List the entity class name you want to manage
+        # - App\Entity\Entreprise
+        # - App\Entity\Formation
+        # - App\Entity\Stage
+        # - App\Entity\User
+        Entreprise:
+            class: App\Entity\Entreprise
+            help: 'Voici la liste des entreprises, rangées par leurs identifiants.'
+            label: 'Entreprises'
+            list:
+                title: 'Liste des entreprises'
+        Formation:
+            class: App\Entity\Formation
+            help: 'Voici la liste des formation, rangées par leurs identifiants.'
+            label: 'Formations'
+            list:
+                title: 'Liste des formations'
+        Stage:
+            class: App\Entity\Stage
+            help: 'Voici la liste des stages, rangés par leurs identifiants.'
+            label: 'Stages'
+            list:
+                title: 'Liste des stages'
+        User:
+            class: App\Entity\User
+            help: 'Voici la liste des utilisateurs, rangés par leurs identifiants.'
+            label: 'Users'
+            list:
+                title: 'Liste des utilisateurs'
+    formats:
+        date: 'd/m/Y'
+        time: 'H:i'
+        datetime: 'd/m/Y H:i:s'
+    list:
+        max_results: 15
