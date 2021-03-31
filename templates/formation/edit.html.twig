@@ -4,8 +4,8 @@
 
 {% block contenuPage %}
     {{ include('formation/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
+    <br>
     <a href="{{ path('formation_index') }}">Retour à la liste des formations</a>
-
+    <br><br>
     {{ include('formation/_delete_form.html.twig') }}
 {% endblock %}

@@ -4,8 +4,8 @@
 
 {% block contenuPage %}
     {{ include('stage/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
+    <br>
     <a href="{{ path('stage_index') }}">Retour à la liste des stages</a>
-
+    <br><br>
     {{ include('stage/_delete_form.html.twig') }}
 {% endblock %}

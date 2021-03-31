@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block titrePage %}Stage index{% endblock %}
+{% block titrePage %}Liste des stages{% endblock %}
 
 {% block contenuPage %}
     <table class="table">
@@ -10,7 +10,7 @@
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Activité</th>
-                <th>Date de déepot</th>
+                <th>Date de dépot</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,7 +21,7 @@
                 <td>{{ stage.titre }}</td>
                 <td>{{ stage.description }}</td>
                 <td>{{ stage.activite }}</td>
-                <td>{{ stage.dateDepot ? stage.dateDepot|date('d-m-Y') : '' }}</td>
+                <td>{{ stage.dateDepot ? stage.dateDepot|date('d/m/Y') : '' }}</td>
                 <td>
                     <a href="{{ path('stage_show', {'id': stage.id}) }}">Consulter</a>
                     <a href="{{ path('stage_edit', {'id': stage.id}) }}">Éditer</a>

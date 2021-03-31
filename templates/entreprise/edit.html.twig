@@ -4,8 +4,8 @@
 
 {% block contenuPage %}
     {{ include('entreprise/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
+    <br>
     <a href="{{ path('entreprise_index') }}">Retour à la liste des entreprises</a>
-
+    <br><br>
     {{ include('entreprise/_delete_form.html.twig') }}
 {% endblock %}
