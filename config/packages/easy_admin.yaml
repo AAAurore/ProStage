@@ -9,25 +9,25 @@ easy_admin:
         # - App\Entity\User
         Entreprise:
             class: App\Entity\Entreprise
-            help: 'Voici la liste des entreprises, rangées par leurs identifiants.'
+            help: 'Voici la liste des entreprises, classées par leurs identifiants.'
             label: 'Entreprises'
             list:
                 title: 'Liste des entreprises'
         Formation:
             class: App\Entity\Formation
-            help: 'Voici la liste des formation, rangées par leurs identifiants.'
+            help: 'Voici la liste des formations, classées par leurs identifiants.'
             label: 'Formations'
             list:
                 title: 'Liste des formations'
         Stage:
             class: App\Entity\Stage
-            help: 'Voici la liste des stages, rangés par leurs identifiants.'
+            help: 'Voici la liste des stages, classés par leurs identifiants.'
             label: 'Stages'
             list:
                 title: 'Liste des stages'
         User:
             class: App\Entity\User
-            help: 'Voici la liste des utilisateurs, rangés par leurs identifiants.'
+            help: 'Voici la liste des utilisateurs, classés par leurs identifiants.'
             label: 'Users'
             list:
                 title: 'Liste des utilisateurs'
